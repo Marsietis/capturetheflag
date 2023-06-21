@@ -29,7 +29,14 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $task = new Tasks;
+        $task->title = $request->input('title');
+        $task->description = $request->input('description');
+        $task->points = $request->input('points');
+        $task->flag = $request->input('flag');
+
+        $task->save();
+        return response('Added');
     }
 
     /**

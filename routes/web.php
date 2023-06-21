@@ -23,7 +23,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('tasks', TasksController::class)->middleware(['auth', 'verified']);
+Route::resource('tasks', TasksController::class)->only(['index', 'store'])->middleware(['auth', 'verified']);
+
+Route::get('/admin', function (){
+    return view('admin');
+})->middleware(['auth', 'verified', 'admin']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
