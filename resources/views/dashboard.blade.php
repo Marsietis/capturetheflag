@@ -13,5 +13,16 @@
                 </div>
             </div>
         </div>
+        <div class="text-gray-50 text-xl">
+        @foreach($tasks as $task => $data)
+            <tr>
+                <th>{{$data->id}}</th><br>
+                <th><a href="/task/{id}">{{$data->title}}</a></th><br>
+                <th>{{$data->description}}</th><br>
+                <th>{{$data->points}}</th><br>
+                <th>{{$data->flag}}</th><br>
+            </tr>
+        @endforeach
+        </div>
     </div>
 </x-app-layout>

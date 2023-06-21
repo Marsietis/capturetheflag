@@ -20,7 +20,8 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $tasks = DB::table('tasks')->get();
+    return view('dashboard', ['tasks' => $tasks]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('tasks', TasksController::class)->only(['index', 'store'])->middleware(['auth', 'verified']);
