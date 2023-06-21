@@ -14,15 +14,25 @@
             </div>
         </div>
         <div class="text-gray-50 text-xl">
-        @foreach($tasks as $task => $data)
-            <tr>
-                <th>{{$data->id}}</th><br>
-                <th><a href="/task/{id}">{{$data->title}}</a></th><br>
-                <th>{{$data->description}}</th><br>
-                <th>{{$data->points}}</th><br>
-                <th>{{$data->flag}}</th><br>
-            </tr>
-        @endforeach
+            @foreach($tasks as $data)
+                <div class="border-t-2">
+                    <a href="{{ route('task', ['id' => $data->id]) }}">
+                        <tr>
+                            <th>{{$data->id}}</th>
+                            <br>
+                            <th>{{$data->title}}</th>
+                            <br>
+                            <th>{{$data->description}}</th>
+                            <br>
+                            <th>{{$data->points}}</th>
+                            <br>
+                            <th>{{$data->flag}}</th>
+                            <br>
+                        </tr>
+                    </a>
+                    @endforeach
+                </div>
         </div>
+
     </div>
 </x-app-layout>

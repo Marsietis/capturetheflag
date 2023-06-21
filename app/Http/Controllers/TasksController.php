@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tasks;
+use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Http\RedirectResponse;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class TasksController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): Response
+    public function index(): View
     {
-        return response('Hello');
+        return view('welcome');
     }
 
     /**
@@ -27,30 +31,32 @@ class TasksController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        $task = new Tasks;
+        $task = new Task;
         $task->title = $request->input('title');
         $task->description = $request->input('description');
         $task->points = $request->input('points');
         $task->flag = $request->input('flag');
 
         $task->save();
-        return response('Added');
+
+        return redirect('/dashboard');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Tasks $tasks)
+    public function show($id): View
     {
-        //
+        $task = Task::findOrFail($id);
+        return view('task', compact('task'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Tasks $tasks)
+    public function edit(Task $tasks)
     {
         //
     }
@@ -58,7 +64,7 @@ class TasksController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tasks $tasks)
+    public function update(Request $request, Task $tasks)
     {
         //
     }
@@ -66,8 +72,35 @@ class TasksController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tasks $tasks)
+    public function destroy(Task $tasks)
     {
         //
     }
+
+    public function showDashboard(): View
+    {
+        $tasks = DB::table('tasks')->get();
+        return view('dashboard', ['tasks' => $tasks]);
+    }
+
+    public function admin(): View
+    {
+        return view('admin');
+    }
+
+    public function check(Request $request): RedirectResponse
+    {
+        $inputtedFlag = $request->input('flag');
+        $taskId = $request->input('task_id');
+
+        $task = Task::findOrFail($taskId);
+
+        if ($task->flag === $inputtedFlag) {
+
+            return redirect()->back()->with('success', 'Task completed successfully!');
+        } else {
+            return redirect()->back()->with('error', 'Sorry, that is not the correct flag. Please try again.');
+        }
+    }
+
 }

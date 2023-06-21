@@ -4,31 +4,20 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TasksController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    $tasks = DB::table('tasks')->get();
-    return view('dashboard', ['tasks' => $tasks]);
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [TasksController::class, 'showDashboard'])
+    ->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('tasks', TasksController::class)->only(['index', 'store'])->middleware(['auth', 'verified']);
 
-Route::get('/admin', function (){
-    return view('admin');
-})->middleware(['auth', 'verified', 'admin']);
+Route::post('/tasks/check', [TasksController::class, 'check'])->name('tasks.check');
+
+Route::get('task/{id}', [TasksController::class, 'show'])->name('task');
+
+Route::get('/admin', [TasksController::class, 'admin'])->middleware(['auth', 'verified', 'admin']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -36,4 +25,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
