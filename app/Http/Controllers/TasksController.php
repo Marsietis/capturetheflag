@@ -29,13 +29,20 @@ class TasksController extends Controller
     public function show($id): View
     {
         $task = Task::findOrFail($id);
-        return view('task', compact('task'));
+        $user = auth()->user();
+        $completedTasks = $user->tasks_completed;
+        $completed = str_contains($completedTasks, $id);
+        return view('task', compact('task', 'completed'));
     }
 
     public function dashboard(): View
     {
         $tasks = DB::table('tasks')->get();
-        return view('dashboard', ['tasks' => $tasks]);
+        $user = auth()->user();
+        $completedTasks = $user->tasks_completed;
+        $completedTasks = explode(',', $completedTasks);
+        $completedTasks = Task::whereIn('id', $completedTasks)->get();
+        return view('dashboard', ['tasks' => $tasks, 'completedTasks' => $completedTasks]);
     }
 
     public function admin(): View

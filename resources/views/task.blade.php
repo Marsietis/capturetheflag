@@ -11,6 +11,7 @@
         <form method="POST" action="{{ route('tasks.check') }}">
             @csrf
 
+            @if(!$completed)
             <div class="mt-4">
                 <x-input-label for="flag" :value="__('Flag')"/>
 
@@ -41,6 +42,11 @@
             <div class="alert alert-danger">
                 {{ session('error') }}
                 <x-wrong></x-wrong>
+            </div>
+        @endif
+        @else
+            <div class="alert alert-success">
+                You have already completed this task.
             </div>
         @endif
     </div>
