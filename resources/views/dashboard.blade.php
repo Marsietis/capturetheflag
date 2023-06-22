@@ -4,6 +4,11 @@
         <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
             <strong class="font-bold">{{ session()->get('success') }}</strong>
         </div>
+        <script>
+            setTimeout(function() {
+                document.querySelector('.bg-green-100').style.display = 'none';
+            }, 3000);
+        </script>
     @endif
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
