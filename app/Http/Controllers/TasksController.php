@@ -29,7 +29,10 @@ class TasksController extends Controller
     public function show($id): View
     {
         $task = Task::findOrFail($id);
-        return view('task', compact('task'));
+        $user = auth()->user();
+        $completedTasks = $user->tasks_completed;
+        $completed = str_contains($completedTasks, $id);
+        return view('task', compact('task', 'completed'));
     }
 
     public function dashboard(): View
