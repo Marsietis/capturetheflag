@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
-
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
@@ -23,9 +22,7 @@ class TasksController extends Controller
         $task->description = $request->input('description');
         $task->points = $request->input('points');
         $task->flag = $request->input('flag');
-
         $task->save();
-
         return redirect('/dashboard');
     }
 

@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="text-white">
+    <div class="text-white justify-center">
         <div>
             <h1>Task Details</h1>
             <p>ID: {{ $task->id }}</p>
@@ -34,6 +34,7 @@
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
+            <x-success></x-success>
         @endif
 
         @if (session('error'))
