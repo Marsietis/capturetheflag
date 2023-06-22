@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
@@ -47,11 +48,12 @@ class TasksController extends Controller
     {
         $inputtedFlag = $request->input('flag');
         $taskId = $request->input('task_id');
-
         $task = Task::findOrFail($taskId);
-
+        $user = auth()->user();
+        $taskPoints = $task->points;
         if ($task->flag === $inputtedFlag) {
-
+            $user->score += $taskPoints;
+            $user->save();
             return redirect()->back()->with('success', 'Task completed successfully!');
         } else {
             return redirect()->back()->with('error', 'Sorry, that is not the correct flag. Please try again.');
