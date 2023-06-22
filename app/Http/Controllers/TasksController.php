@@ -50,8 +50,13 @@ class TasksController extends Controller
         $task = Task::findOrFail($taskId);
         $user = auth()->user();
         $taskPoints = $task->points;
+        $completedTasks = $user->tasks_completed;
+        if (str_contains($completedTasks, $taskId)) {
+            return redirect()->back()->with('error', 'You have already completed this task.');
+        }
         if ($task->flag === $inputtedFlag) {
             $user->score += $taskPoints;
+            $user->tasks_completed = $completedTasks . $taskId . ',';
             $user->save();
             return redirect()->back()->with('success', 'Task completed successfully!');
         } else {
