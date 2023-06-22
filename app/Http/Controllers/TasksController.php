@@ -40,9 +40,16 @@ class TasksController extends Controller
         $tasks = DB::table('tasks')->get();
         $user = auth()->user();
         $completedTasks = $user->tasks_completed;
+        $completedTasksCount = substr_count($completedTasks, ',');
+        $score = $user->score;
         $completedTasks = explode(',', $completedTasks);
         $completedTasks = Task::whereIn('id', $completedTasks)->get();
-        return view('dashboard', ['tasks' => $tasks, 'completedTasks' => $completedTasks]);
+        return view('dashboard', [
+            'tasks' => $tasks,
+            'completedTasks' => $completedTasks,
+            'completedTasksCount' => $completedTasksCount,
+            'score' => $score,
+            ]);
     }
 
     public function admin(): View
@@ -59,15 +66,15 @@ class TasksController extends Controller
         $taskPoints = $task->points;
         $completedTasks = $user->tasks_completed;
         if (str_contains($completedTasks, $taskId)) {
-            return redirect()->back()->with('error', 'You have already completed this task.');
+            return redirect()->back()->with('error', 'You have already completed this task . ');
         }
         if ($task->flag === $inputtedFlag) {
             $user->score += $taskPoints;
             $user->tasks_completed = $completedTasks . $taskId . ',';
             $user->save();
-            return redirect()->back()->with('success', 'Task completed successfully!');
+            return redirect('dashboard')->with('success', 'Task completed successfully!');
         } else {
-            return redirect()->back()->with('error', 'Sorry, that is not the correct flag. Please try again.');
+            return redirect()->back()->with('error', 'Sorry, that is not the correct flag . Please try again . ');
         }
     }
 
