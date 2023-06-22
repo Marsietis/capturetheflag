@@ -38,7 +38,11 @@ class TasksController extends Controller
     public function dashboard(): View
     {
         $tasks = DB::table('tasks')->get();
-        return view('dashboard', ['tasks' => $tasks]);
+        $user = auth()->user();
+        $completedTasks = $user->tasks_completed;
+        $completedTasks = explode(',', $completedTasks);
+        $completedTasks = Task::whereIn('id', $completedTasks)->get();
+        return view('dashboard', ['tasks' => $tasks, 'completedTasks' => $completedTasks]);
     }
 
     public function admin(): View

@@ -14,20 +14,23 @@
             </div>
         </div>
         <div class="text-gray-50 text-xl">
-            @foreach($tasks as $data)
+            @foreach($tasks as $task)
                 <div class="border-t-2">
-                    <a href="{{ route('task', ['id' => $data->id]) }}">
+                    <a href="{{ route('task', ['id' => $task->id]) }}">
                         <tr>
-                            <th>{{$data->id}}</th>
+                            <th>{{$task->id}}</th>
                             <br>
-                            <th>{{$data->title}}</th>
+                            <th>{{$task->title}}</th>
                             <br>
-                            <th>{{$data->description}}</th>
+                            <th>{{$task->description}}</th>
                             <br>
-                            <th>{{$data->points}}</th>
+                            <th>{{$task->points}}</th>
                             <br>
-                            <th>{{$data->flag}}</th>
+                            <th>{{$task->flag}}</th>
                             <br>
+                            @if(in_array($task->id, $completedTasks->pluck('id')->toArray()))
+                                <th>Completed</th>
+                            @endif
                         </tr>
                     </a>
                     @endforeach
