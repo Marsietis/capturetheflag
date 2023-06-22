@@ -8,8 +8,7 @@ class LeaderboardController extends Controller
 {
     public function __invoke()
     {
-        //Display all users and sort by score
-        $users = User::orderBy('score', 'desc')->get();
+        $users = User::orderBy('score', 'desc')->where('score', '>', 0)->get();
         return view('leaderboard', compact('users'));
     }
 }
