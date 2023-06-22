@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Http\RedirectResponse;
 
 use Illuminate\Support\Facades\DB;
@@ -12,25 +11,11 @@ use Illuminate\View\View;
 
 class TasksController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(): View
     {
         return view('welcome');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request): RedirectResponse
     {
         $task = new Task;
@@ -44,40 +29,13 @@ class TasksController extends Controller
         return redirect('/dashboard');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show($id): View
     {
         $task = Task::findOrFail($id);
         return view('task', compact('task'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Task $tasks)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Task $tasks)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Task $tasks)
-    {
-        //
-    }
-
-    public function showDashboard(): View
+    public function dashboard(): View
     {
         $tasks = DB::table('tasks')->get();
         return view('dashboard', ['tasks' => $tasks]);

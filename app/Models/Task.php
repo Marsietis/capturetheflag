@@ -17,4 +17,5 @@ class Task extends Model
         'points',
         'flag',
     ];
+
 }
