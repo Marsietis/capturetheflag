@@ -1,57 +1,73 @@
 <x-app-layout>
-    <div class="text-white justify-center">
-        <div>
-            <h1>Task Details</h1>
-            <p>ID: {{ $task->id }}</p>
-            <p>Title: {{ $task->title }}</p>
-            <p>Description: {{ $task->description }}</p>
-            <p>Points: {{ $task->points }}</p>
-            @if($task->file)
-                <p><a href="{{ Storage::url($task->file) }}" download class="hover:text-gray-400">File</a></p>
-            @endif
-            @if($task->link)
-                <p><a href="https://{{$task->link}}" target="_blank" class="hover:text-gray-400">Link</a></p>
-            @endif
-            <p>Flag: {{ $task->flag }}</p>
+    <x-slot name="header">
+        <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Task') }}
+        </h2>
+    </x-slot>
+    @if (session('error'))
+        <div class="fixed top-44 inset-x-0 flex justify-center">
+            <div class="bg-red-500 border border-red-700 text-white px-4 py-3 rounded max-w-lg">
+                <strong class="font-bold">{{ session()->get('error') }}</strong>
+            </div>
         </div>
-        <form method="POST" action="{{ route('tasks.check') }}">
-            @csrf
 
-            @if(!$completed)
-                <div class="mt-4">
-                    <x-input-label for="flag" :value="__('Flag')"/>
+        <script>
+            setTimeout(function () {
+                document.querySelector('.bg-red-500').style.display = 'none';
+            }, 3000);
+        </script>
+    @endif
 
-                    <x-text-input id="flag" class="block mt-1 w-full"
-                                  type="text"
-                                  name="flag" required/>
+    <div class="mx-28 mt-20 text-white bg-zinc-900 p-16 overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="inline-flex items-center gap-4">
+            <div class="text-7xl font-bold">{{ $task->title }}</div>
+            <span class="bg-zinc-800 text-white rounded py-1 px-2">{{ __('Points') }}: {{$task->points}}</span>
+        </div>
 
-                    <x-input-error :messages="$errors->get('flag')" class="mt-2"/>
+        <div class="mt-4 text-3xl">Description: {{ $task->description }}</div>
+        @if($task->file)
+            <div class="text-xl my-6 hover:text-red-400">
+                <a href="{{ Storage::url($task->file) }}" download>
+                    <span class="underline">Get the file</span>
+                </a>
+            </div>
+        @endif
+        @if($task->link)
+            <div class="text-xl my-6 hover:text-red-400">
+                <a href="https://{{$task->link}}" target="_blank">
+                    <span class="underline">Link</span>
+                </a>
+            </div>
+        @endif
+
+        @if(!$completed)
+            <form method="POST" action="{{ route('tasks.check') }}">
+                @csrf
+                <div class="text-xl mb-2 mt-6 font-bold">Enter the flag:</div>
+                <div class="flex items-center">
+                    <div class="flex-1 max-w-xl">
+                        <x-text-input id="flag" class="block mt-1 w-full" type="text" name="flag" required/>
+                        <x-input-error :messages="$errors->get('flag')" class="mt-2"/>
+                    </div>
+                    <input type="hidden" name="task_id" value="{{ $task->id }}">
+                    <div class="ml-4">
+                        <x-primary-button>
+                            {{ __('Submit') }}
+                        </x-primary-button>
+                    </div>
                 </div>
+                <div class="mt-3">Flag format: CTF{Flag}</div>
+            </form>
 
-                <input type="hidden" name="task_id" value="{{ $task->id }}">
-
-                <div class="flex items-center justify-end mt-4">
-                    <x-primary-button class="ml-4">
-                        {{ __('Submit') }}
-                    </x-primary-button>
-                </div>
-        </form>
 
         @if (session('success'))
-            <div class="alert alert-success">
+            <div class="mt-8 bg-green-500 text-white py-2 px-4 rounded">
                 {{ session('success') }}
             </div>
             <x-success></x-success>
         @endif
-
-        @if (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-                <x-wrong></x-wrong>
-            </div>
-        @endif
         @else
-            <div class="alert alert-success">
+            <div class="mt-8 text-white py-2 rounded text-xl">
                 You have already completed this task.
             </div>
         @endif
