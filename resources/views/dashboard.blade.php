@@ -36,7 +36,7 @@
                             @if(in_array($task->id, $completedTasks->pluck('id')->toArray()))
                                 <span class="text-gray-400 ml-2">Completed</span>
                             @else
-                                <a href="{{ route('task', ['id' => $task->id]) }}" class="bg-zinc-800 text-white ml-2 px-2 py-1 rounded hover:bg-red-400">Go to Task</a>
+                                <a href="{{ route('task', ['id' => $task->id]) }}" class="bg-zinc-800 text-whit border border-red-400 ml-2 px-2 py-1 rounded hover:bg-red-400">Go to Task</a>
                             @endif
                         </div>
                     </div>
