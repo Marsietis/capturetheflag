@@ -25,7 +25,7 @@
                         @php
                             $userPosition = $index + 1;
                         @endphp
-                        <div class="bg-zinc-900 rounded hover:bg-red-400 p-2 mb-3">{{ $userPosition }}. {{ $user->name }} ({{ $user->score }})</div>
+                        <div class="bg-zinc-900 rounded p-2 mb-3">{{ $userPosition }}. {{ $user->name }} ({{ $user->score }})</div>
                     @else
                         <div class="mb-3">{{ $index+1 }}. {{ $user->name }} ({{ $user->score }})</div>
                     @endif
