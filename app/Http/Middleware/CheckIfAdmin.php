@@ -16,12 +16,9 @@ class CheckIfAdmin
     public function handle(Request $request, Closure $next): Response
     {
         $user = $request->user();
-
         if ($user && $user->is_admin === 1) {
-            // User is an admin, allow the request to proceed
             return $next($request);
         }
-
         return response()->json(['error' => 'Unauthorized'], 401);
     }
 }

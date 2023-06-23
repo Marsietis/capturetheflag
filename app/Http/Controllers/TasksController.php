@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Task;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Models\Task;
 
 class TasksController extends Controller
 {
@@ -21,12 +21,12 @@ class TasksController extends Controller
         $task->description = $request->input('description');
         $task->points = $request->input('points');
         $task->link = $request->input('link');
-        $task->flag = $request->input('flag');
         if ($request->hasFile('file')) {
             $file = $request->file('file');
             $path = $file->store('public');
             $task->file = $path;
         }
+        $task->flag = $request->input('flag');
         $task->save();
         return redirect('/dashboard');
     }
@@ -42,18 +42,15 @@ class TasksController extends Controller
 
     public function check(Request $request): RedirectResponse
     {
-        $inputtedFlag = $request->input('flag');
         $taskId = $request->input('task_id');
+        $inputtedFlag = $request->input('flag');
         $task = Task::findOrFail($taskId);
         $taskPoints = $task->points;
-
         $user = auth()->user();
         $completedTasks = $user->tasks_completed;
-
         if (str_contains($completedTasks, $taskId)) {
             return redirect()->back()->with('error', 'You have already completed this task . ');
         }
-
         if ($task->flag === $inputtedFlag) {
             $user->score += $taskPoints;
             $user->tasks_completed = $completedTasks . $taskId . ',';
