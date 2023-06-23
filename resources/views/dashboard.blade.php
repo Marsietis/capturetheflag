@@ -27,9 +27,9 @@
         </div>
 
         <div class="text-gray-50 text-xl">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-24">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-4 sm:px-8 md:px-16 lg:px-24">
                 @foreach($tasks as $task)
-                    <div class="py-16 px-8 flex flex-col justify-center h-full bg-zinc-900 shadow-sm sm:rounded-lg">
+                    <div class="py-8 sm:py-16 px-4 sm:px-8 flex flex-col justify-center h-full bg-zinc-900 shadow-sm sm:rounded-lg">
                         <div class="text-2xl font-bold mb-2">{{$task->title}}</div>
                         <div class="flex items-center mt-2">
                             <span class="bg-zinc-800 text-white px-2 py-1 rounded">Points: {{$task->points}}</span>
@@ -43,6 +43,7 @@
                 @endforeach
             </div>
         </div>
+
 
 
 
