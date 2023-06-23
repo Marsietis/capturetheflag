@@ -16,6 +16,8 @@ class Task extends Model
         'description',
         'points',
         'flag',
+        'file',
+        'link'
     ];
 
 }

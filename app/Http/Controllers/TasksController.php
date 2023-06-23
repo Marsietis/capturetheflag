@@ -20,6 +20,7 @@ class TasksController extends Controller
         $task->title = $request->input('title');
         $task->description = $request->input('description');
         $task->points = $request->input('points');
+        $task->link = $request->input('link');
         $task->flag = $request->input('flag');
         $task->save();
         return redirect('/dashboard');

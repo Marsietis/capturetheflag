@@ -14,6 +14,8 @@ class CreateTasksTable extends Migration
             $table->string('description');
             $table->integer('points');
             $table->string('flag');
+            $table->string('file')->nullable();
+            $table->string('link')->nullable();
         });
     }
 
