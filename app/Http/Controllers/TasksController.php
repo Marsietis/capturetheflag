@@ -20,7 +20,13 @@ class TasksController extends Controller
         $task->title = $request->input('title');
         $task->description = $request->input('description');
         $task->points = $request->input('points');
+        $task->link = $request->input('link');
         $task->flag = $request->input('flag');
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $path = $file->store('public');
+            $task->file = $path;
+        }
         $task->save();
         return redirect('/dashboard');
     }

@@ -14,7 +14,7 @@
         <div class="mt-4">
             <x-input-label for="description" :value="__('Task Description')"/>
             <textarea name="description"
-                      class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">{{ old('description') }}</textarea>
+                      class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm bg-gray-800 text-white">{{ old('description') }}</textarea>
             <x-input-error :messages="$errors->get('description')" class="mt-2"/>
         </div>
 
@@ -23,6 +23,20 @@
             <x-input-label for="points" :value="__('Points')"/>
             <x-text-input id="points" class="block mt-1 w-full" type="text" name="points" required/>
             <x-input-error :messages="$errors->get('points')" class="mt-2"/>
+        </div>
+
+        {{--Link--}}
+        <div class="mt-4">
+            <x-input-label for="link" :value="__('Link (if exists) (without https:// part)')"/>
+            <x-text-input id="link" class="block mt-1 w-full" type="text" name="link" />
+            <x-input-error :messages="$errors->get('link')" class="mt-2"/>
+        </div>
+
+        {{--File--}}
+        <div class="mt-4">
+            <x-input-label for="file" :value="__('Upload file (if exists)')"/>
+            <x-text-input id="file" class="block mt-1 w-full" type="file" name="file" />
+            <x-input-error :messages="$errors->get('file')" class="mt-2"/>
         </div>
 
         <!-- Flag -->

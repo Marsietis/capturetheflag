@@ -6,29 +6,35 @@
             <p>Title: {{ $task->title }}</p>
             <p>Description: {{ $task->description }}</p>
             <p>Points: {{ $task->points }}</p>
+            @if($task->file)
+                <p><a href="{{ Storage::url($task->file) }}" download class="hover:text-gray-400">File</a></p>
+            @endif
+            @if($task->link)
+                <p><a href="https://{{$task->link}}" target="_blank" class="hover:text-gray-400">Link</a></p>
+            @endif
             <p>Flag: {{ $task->flag }}</p>
         </div>
         <form method="POST" action="{{ route('tasks.check') }}">
             @csrf
 
             @if(!$completed)
-            <div class="mt-4">
-                <x-input-label for="flag" :value="__('Flag')"/>
+                <div class="mt-4">
+                    <x-input-label for="flag" :value="__('Flag')"/>
 
-                <x-text-input id="flag" class="block mt-1 w-full"
-                              type="text"
-                              name="flag" required/>
+                    <x-text-input id="flag" class="block mt-1 w-full"
+                                  type="text"
+                                  name="flag" required/>
 
-                <x-input-error :messages="$errors->get('flag')" class="mt-2"/>
-            </div>
+                    <x-input-error :messages="$errors->get('flag')" class="mt-2"/>
+                </div>
 
-            <input type="hidden" name="task_id" value="{{ $task->id }}">
+                <input type="hidden" name="task_id" value="{{ $task->id }}">
 
-            <div class="flex items-center justify-end mt-4">
-                <x-primary-button class="ml-4">
-                    {{ __('Submit') }}
-                </x-primary-button>
-            </div>
+                <div class="flex items-center justify-end mt-4">
+                    <x-primary-button class="ml-4">
+                        {{ __('Submit') }}
+                    </x-primary-button>
+                </div>
         </form>
 
         @if (session('success'))
