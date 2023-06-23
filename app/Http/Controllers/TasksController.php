@@ -6,6 +6,7 @@ use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class TasksController extends Controller
 {
@@ -22,6 +23,11 @@ class TasksController extends Controller
         $task->points = $request->input('points');
         $task->link = $request->input('link');
         $task->flag = $request->input('flag');
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $path = $file->store('public');
+            $task->file = $path;
+        }
         $task->save();
         return redirect('/dashboard');
     }

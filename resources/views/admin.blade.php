@@ -28,8 +28,15 @@
         {{--Link--}}
         <div class="mt-4">
             <x-input-label for="link" :value="__('Link (if exists) (without https:// part)')"/>
-            <x-text-input id="link" class="block mt-1 w-full" type="text" name="link" required/>
+            <x-text-input id="link" class="block mt-1 w-full" type="text" name="link" />
             <x-input-error :messages="$errors->get('link')" class="mt-2"/>
+        </div>
+
+        {{--File--}}
+        <div class="mt-4">
+            <x-input-label for="file" :value="__('Upload file (if exists)')"/>
+            <x-text-input id="file" class="block mt-1 w-full" type="file" name="file" />
+            <x-input-error :messages="$errors->get('file')" class="mt-2"/>
         </div>
 
         <!-- Flag -->

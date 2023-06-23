@@ -7,7 +7,7 @@
             <p>Description: {{ $task->description }}</p>
             <p>Points: {{ $task->points }}</p>
             @if($task->file)
-                <p><a href="../{{$task->file}}" download class="hover:text-gray-400">File</a></p>
+                <p><a href="{{ Storage::url($task->file) }}" download class="hover:text-gray-400">File</a></p>
             @endif
             @if($task->link)
                 <p><a href="https://{{$task->link}}" target="_blank" class="hover:text-gray-400">Link</a></p>
