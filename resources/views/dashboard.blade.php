@@ -1,12 +1,13 @@
 <x-app-layout>
 
     @if(session()->has('success'))
-        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+        <div class="flex justify-center bg-green-500 border border-green-700 text-white px-4 py-3 rounded relative max-w-lg mx-auto mt-6"
+             role="alert">
             <strong class="font-bold">{{ session()->get('success') }}</strong>
         </div>
         <script>
-            setTimeout(function() {
-                document.querySelector('.bg-green-100').style.display = 'none';
+            setTimeout(function () {
+                document.querySelector('.bg-green-500').style.display = 'none';
             }, 3000);
         </script>
     @endif
@@ -17,36 +18,35 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-center">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-center mb-6">
+            <div class="bg-white dark:bg-zinc-900 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100 text-xl">
                     Your score: {{ $score }} Tasks completed: {{ $completedTasks->count() }} / {{ $tasks->count() }}
                 </div>
             </div>
         </div>
+
         <div class="text-gray-50 text-xl">
-            @foreach($tasks as $task)
-                <div class="border-t-2">
-                    <a href="{{ route('task', ['id' => $task->id]) }}">
-                        <tr>
-                            <th>{{$task->id}}</th>
-                            <br>
-                            <th>{{$task->title}}</th>
-                            <br>
-                            <th>{{$task->description}}</th>
-                            <br>
-                            <th>{{$task->points}}</th>
-                            <br>
-                            <th>{{$task->flag}}</th>
-                            <br>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-24">
+                @foreach($tasks as $task)
+                    <div class="py-16 px-8 flex flex-col justify-center h-full bg-zinc-900 shadow-sm sm:rounded-lg">
+                        <div class="text-2xl font-bold mb-2">{{$task->title}}</div>
+                        <div class="flex items-center mt-2">
+                            <span class="bg-zinc-800 text-white px-2 py-1 rounded">Points: {{$task->points}}</span>
                             @if(in_array($task->id, $completedTasks->pluck('id')->toArray()))
-                                <th>Completed</th>
+                                <span class="text-gray-400 ml-2">Completed</span>
+                            @else
+                                <a href="{{ route('task', ['id' => $task->id]) }}" class="bg-zinc-800 text-white ml-2 px-2 py-1 rounded hover:bg-red-400">Go to Task</a>
                             @endif
-                        </tr>
-                    </a>
-                    @endforeach
-                </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
+
+
+
+
 
     </div>
 </x-app-layout>
