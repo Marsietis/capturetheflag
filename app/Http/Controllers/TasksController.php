@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class TasksController extends Controller
@@ -40,12 +39,15 @@ class TasksController extends Controller
         $inputtedFlag = $request->input('flag');
         $taskId = $request->input('task_id');
         $task = Task::findOrFail($taskId);
-        $user = auth()->user();
         $taskPoints = $task->points;
+
+        $user = auth()->user();
         $completedTasks = $user->tasks_completed;
+
         if (str_contains($completedTasks, $taskId)) {
             return redirect()->back()->with('error', 'You have already completed this task . ');
         }
+
         if ($task->flag === $inputtedFlag) {
             $user->score += $taskPoints;
             $user->tasks_completed = $completedTasks . $taskId . ',';
