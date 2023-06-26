@@ -23,7 +23,7 @@ class TasksController extends Controller
         $task->link = $request->input('link');
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            $path = $file->store('public');
+            $path = $file->storeAs('public', $file->getClientOriginalName());
             $task->file = $path;
         }
         $task->flag = $request->input('flag');
@@ -57,7 +57,7 @@ class TasksController extends Controller
             $user->save();
             return redirect('dashboard')->with('success', 'Task completed successfully!');
         } else {
-            return redirect()->back()->with('error', 'Sorry, that is not the correct flag . Please try again . ');
+            return redirect()->back()->with('error', 'Sorry, that is not the correct flag . Please try again . ')->withInput();
         }
     }
 
