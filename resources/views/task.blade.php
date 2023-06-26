@@ -45,7 +45,7 @@
                     <div class="text-xl mb-2 mt-6 font-bold">Enter the flag:</div>
                     <div class="flex items-center">
                         <div class="flex-1 max-w-xl">
-                            <x-text-input id="flag" class="block mt-1 w-full" type="text" name="flag" value="{{ old('flag') }}" required/>
+                            <x-text-input id="flag" class="block mt-1 w-full" type="text" name="flag" value="{{ old('flag') }}" autocomplete="off" required/>
                             <x-input-error :messages="$errors->get('flag')" class="mt-2"/>
                         </div>
                         <input type="hidden" name="task_id" value="{{ $task->id }}">
