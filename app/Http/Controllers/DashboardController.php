@@ -11,6 +11,8 @@ class DashboardController extends Controller
     {
         $user = auth()->user();
         $completedTasks = explode(',', $user->tasks_completed);
+        $totalTasks = DB::table('tasks')->get();
+        $totalTaskCount = count($totalTasks);
         $tasks = Task::whereNotIn('id', $completedTasks)->orderBy('points')->get();
         $completedTasks = Task::whereIn('id', $completedTasks)->orderBy('points')->get();
         $completedTasksCount = count($completedTasks);
@@ -20,6 +22,7 @@ class DashboardController extends Controller
             'completedTasks' => $completedTasks,
             'completedTasksCount' => $completedTasksCount,
             'score' => $score,
+            'totalTasksCount' => $totalTaskCount,
         ]);
     }
 }
