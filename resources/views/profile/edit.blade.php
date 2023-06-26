@@ -12,7 +12,7 @@
                 <div class="max-w-xl text-white text-xl">
                     <div>{{$user->name}}</div>
                     <div>Score: {{$score}}</div>
-                    <div>Tasks completed: {{$completedTasksCount}} / {{$tasks->count()}}</div>
+                    <div>Tasks completed: {{$completedTasksCount}} / {{$tasksCount}}</div>
                 </div>
             </div>
             <div class="p-4 sm:p-8 bg-white dark:bg-zinc-900 shadow sm:rounded-lg">

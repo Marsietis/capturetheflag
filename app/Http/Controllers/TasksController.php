@@ -16,18 +16,22 @@ class TasksController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        $task = new Task;
-        $task->title = $request->input('title');
-        $task->description = $request->input('description');
-        $task->points = $request->input('points');
-        $task->link = $request->input('link');
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $path = $file->storeAs('public', $file->getClientOriginalName());
-            $task->file = $path;
+        if(auth()->user()->is_admin) {
+            $task = new Task;
+
+            $task->title = $request->input('title');
+            $task->description = $request->input('description');
+            $task->points = $request->input('points');
+            $task->link = $request->input('link');
+            if ($request->hasFile('file')) {
+                $file = $request->file('file');
+                $path = $file->storeAs('public', $file->getClientOriginalName());
+                $task->file = $path;
+            }
+            $task->flag = $request->input('flag');
+            $task->save();
+
         }
-        $task->flag = $request->input('flag');
-        $task->save();
         return redirect('/dashboard');
     }
 

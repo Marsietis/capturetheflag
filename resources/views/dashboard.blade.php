@@ -22,7 +22,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-center mb-6">
             <div class="bg-white dark:bg-zinc-900 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100 text-xl">
-                Your score: {{ $score }} Tasks completed: {{ $completedTasks->count() }} / {{ $totalTasksCount }}
+                Your score: {{ $score }} Tasks completed: {{ $completedTasks->count() }} / {{ $totalTaskCount }}
                 </div>
             </div>
         </div>

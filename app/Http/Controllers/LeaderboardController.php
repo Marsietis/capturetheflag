@@ -9,9 +9,9 @@ class LeaderboardController extends Controller
     public function __invoke()
     {
         $user = auth()->user();
-        $users = User::orderBy('score', 'desc')->where('score', '>', 0)->get();
-        $userPosition = $users->pluck('id')->search($user->id);
-        $userPosition = $userPosition !== false ? $userPosition + 1 : null;
+        $users = User::where('score', '>', 0)->orderByDesc('score')->get();
+        $userPosition = $users->pluck('id')->search($user->id) + 1;
+        $userPosition = $userPosition ?: null;
         return view('leaderboard', compact('users', 'user', 'userPosition'));
     }
 }

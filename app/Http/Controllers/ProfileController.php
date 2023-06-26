@@ -18,17 +18,13 @@ class ProfileController extends Controller
     public function edit(Request $request): View
     {
         $user = auth()->user();
-        $tasks = DB::table('tasks')->get();
-        $score = $user->score;
-        $completedTasks = $user->tasks_completed;
-        $completedTasksCount = substr_count($completedTasks, ',');
+        $completedTasksCount = substr_count($user->tasks_completed, ',');
 
         return view('profile.edit', [
-            'user' => $request->user(),
-            'tasks' => $tasks,
-            'completedTasks' => $completedTasks,
+            'user' => $user,
+            'tasksCount' => count(DB::table('tasks')->get()),
             'completedTasksCount' => $completedTasksCount,
-            'score' => $score,
+            'score' => auth()->user()->score,
         ]);
     }
 
