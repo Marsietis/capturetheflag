@@ -16,11 +16,11 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+{{--                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('learn')" :active="request()->routeIs('learn')">
                         {{ __('Learn') }}
                     </x-nav-link>
-                </div>
+                </div>--}}
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('leaderboard')" :active="request()->routeIs('leaderboard')">
                         {{ __('Leaderboard') }}
