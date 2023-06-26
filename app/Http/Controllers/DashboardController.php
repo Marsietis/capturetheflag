@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Task;
 use Illuminate\Support\Facades\DB;
+use App\Models\Task;
 
 class DashboardController extends Controller
 {
     public function __invoke()
     {
-        $tasks = DB::table('tasks')->get();
         $user = auth()->user();
-        $completedTasks = $user->tasks_completed;
-        $completedTasksCount = substr_count($completedTasks, ',');
+        $completedTasks = explode(',', $user->tasks_completed);
+        $tasks = Task::whereNotIn('id', $completedTasks)->orderBy('points')->get();
+        $completedTasks = Task::whereIn('id', $completedTasks)->orderBy('points')->get();
+        $completedTasksCount = count($completedTasks);
         $score = $user->score;
-        $completedTasks = explode(',', $completedTasks);
-        $completedTasks = Task::whereIn('id', $completedTasks)->get();
         return view('dashboard', [
             'tasks' => $tasks,
             'completedTasks' => $completedTasks,
@@ -24,3 +23,4 @@ class DashboardController extends Controller
         ]);
     }
 }
+
