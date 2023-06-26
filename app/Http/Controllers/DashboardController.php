@@ -14,7 +14,7 @@ class DashboardController extends Controller
         $totalTasks = DB::table('tasks')->get();
         $totalTaskCount = count($totalTasks);
         $tasks = Task::whereNotIn('id', $completedTasks)->orderBy('points')->get();
-        $completedTasks = Task::whereIn('id', $completedTasks)->orderBy('points')->get();
+        $completedTasks = Task::whereIn('id', $completedTasks)->get();
         $completedTasksCount = count($completedTasks);
         $score = $user->score;
         return view('dashboard', [
@@ -26,4 +26,3 @@ class DashboardController extends Controller
         ]);
     }
 }
-
