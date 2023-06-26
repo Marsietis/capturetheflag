@@ -4,7 +4,6 @@ use App\Http\Controllers\LeaderboardController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TasksController;
-use App\Http\Controllers\LearnController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,7 +21,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/tasks/check', [TasksController::class, 'check'])->name('tasks.check');
     Route::get('task/{id}', [TasksController::class, 'show'])->name('task');
     Route::resource('tasks', TasksController::class)->only(['index', 'store']);
-    Route::get('/learn', [LearnController::class, 'index'])->name('learn');
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
     Route::get('/leaderboard', LeaderboardController::class)->name('leaderboard');
 });
