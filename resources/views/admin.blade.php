@@ -1,4 +1,5 @@
 <x-guest-layout>
+<div class="text-white text-xl mb-4 flex justify-center">Add a new task</div>
     <form method="POST" action="{{ route('tasks.store') }}" enctype="multipart/form-data">
         @csrf
 
@@ -14,7 +15,7 @@
         <div class="mt-4">
             <x-input-label for="description" :value="__('Task Description')"/>
             <textarea name="description"
-                      class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm bg-gray-800 text-white">{{ old('description') }}</textarea>
+                      class="block w-full border-zinc-900 focus:border-red-500 focus:ring focus:ring-red-500 rounded-md shadow-sm bg-zinc-800 text-white">{{ old('description') }}</textarea>
             <x-input-error :messages="$errors->get('description')" class="mt-2"/>
         </div>
 
