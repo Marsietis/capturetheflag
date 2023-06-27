@@ -92,7 +92,7 @@
 
 <footer class="footer footer-center p-4 bg-zinc-900 text-base-content">
     <div>
-        <p>Copyright © 2023 - All right reserved | Martynas Matijošius</p>
+        <p>Copyright © 2023 Martynas Matijošius</p>
     </div>
 </footer>
 </body>
