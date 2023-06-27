@@ -6,22 +6,22 @@
     </x-slot>
     @if (session('error'))
         <div class="fixed top-44 inset-x-0 flex justify-center">
-            <div class="bg-red-500 border border-red-700 text-white px-4 py-3 rounded max-w-lg">
+            <div class="bg-red-400 text-white px-4 py-3 rounded-lg max-w-lg shadow-xl">
                 <strong class="font-bold">{{ session()->get('error') }}</strong>
             </div>
         </div>
 
         <script>
             setTimeout(function () {
-                document.querySelector('.bg-red-500').style.display = 'none';
+                document.querySelector('.bg-red-400').style.display = 'none';
             }, 3000);
         </script>
     @endif
 
     <div class="container mt-20 mx-auto px-4 sm:px-6 lg:px-8 text-white">
-        <div class="mx-auto bg-zinc-900 p-8 sm:p-16 overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="mx-auto bg-zinc-900 p-8 sm:p-16 overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="text-7xl font-bold text-white mb-4">{{ $task->title }}</div>
-                <span class="bg-zinc-800 text-white rounded py-1 px-2 mt-6 text-xl">{{ __('Points') }}: {{$task->points}}</span>
+            <div class="badge bg-zinc-800 text-white text-2xl p-4">Points: {{$task->points}}</div>
 
             <div class="mt-8 text-3xl text-white">{{ $task->description }}</div>
             @if($task->file)

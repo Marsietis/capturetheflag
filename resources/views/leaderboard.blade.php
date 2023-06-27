@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-center pt-12">
-        <div class="bg-white dark:bg-zinc-900 overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="bg-white dark:bg-zinc-900 overflow-hidden shadow-xl sm:rounded-lg">
             <div class="p-6 text-gray-900 dark:text-gray-100 text-xl text-center">
                 Your score: {{ $user->score }} Your position: {{ $userPosition }} / {{ $users->count() }}
                 @if($userPosition === 1)
@@ -25,7 +25,7 @@
                         @php
                             $userPosition = $index + 1;
                         @endphp
-                        <div class="bg-zinc-900 rounded p-2 mb-3">{{ $userPosition }}. {{ $user->name }} ({{ $user->score }})</div>
+                        <div class="bg-zinc-900 rounded-lg p-4 mb-4 shadow-xl">{{ $userPosition }}. {{ $user->name }} ({{ $user->score }})</div>
                     @else
                         <div class="mb-3">{{ $index+1 }}. {{ $user->name }} ({{ $user->score }})</div>
                     @endif
