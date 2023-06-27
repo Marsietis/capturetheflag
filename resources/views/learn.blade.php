@@ -8,7 +8,7 @@
         <article class="prose">
             <div class="container mt-20 mx-auto px-4 sm:px-6 lg:px-8 ">
                 <div class="mx-auto bg-zinc-900 p-8 sm:p-16 overflow-hidden shadow-xl sm:rounded-lg">
-                    <h1>Here is a list of must know things to be effective at CTF games</h1>
+                    <h1>Here is a list of must-know things to be effective at CTF games</h1>
 
                     <h2>Linux Basics</h2>
 

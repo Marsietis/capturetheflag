@@ -50,7 +50,7 @@
                 world of
                 cybersecurity?
             </p>
-            <a href="{{ route('dashboard') }}">
+            <a href="{{ route('register') }}">
                 <button class="btn btn-outline btn-error">Get Started</button>
             </a>
         </div>
@@ -65,7 +65,7 @@
                 these
                 challenges, uncovering hidden flags along the way. Each successful capture earns you points,
                 helping you climb up the leaderboard.</p>
-            <a href="{{ route('dashboard') }}">
+            <a href="{{ route('register') }}">
                 <button class="btn btn-outline btn-error">Get Started</button>
             </a>
         </div>
@@ -83,7 +83,7 @@
                 challenge. Are you up for
                 the
                 challenge? Let the games begin!</p>
-            <a href="{{ route('dashboard') }}">
+            <a href="{{ route('register') }}">
                 <button class="btn btn-outline btn-error mt-10">Play now</button>
             </a>
         </div>
