@@ -21,6 +21,11 @@
                         {{ __('Leaderboard') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('learn')" :active="request()->routeIs('learn')">
+                        {{ __('Learn') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
@@ -85,6 +90,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('leaderboard')" :active="request()->routeIs('leaderboard')">
                 {{ __('Leaderboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('learn')" :active="request()->routeIs('learn')">
+                {{ __('Learn') }}
             </x-responsive-nav-link>
         </div>
 
