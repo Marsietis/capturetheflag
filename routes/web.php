@@ -20,7 +20,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/tasks/check', [TasksController::class, 'check'])->name('tasks.check');
-    Route::get('task/{id}', [TasksController::class, 'show'])->name('task');
+    Route::get('tasks/{id}', [TasksController::class, 'show'])->name('tasks');
     Route::resource('tasks', TasksController::class)->only(['index', 'store']);
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
     Route::get('/leaderboard', LeaderboardController::class)->name('leaderboard');
