@@ -1,16 +1,34 @@
 <x-app-layout>
 
     @if(session()->has('success'))
-        <div
-            class="flex justify-center bg-green-400 text-white px-4 py-3 rounded-lg shadow-xl relative max-w-lg mx-auto mt-6"
-            role="alert">
-            <strong class="font-bold">{{ session()->get('success') }}</strong>
+        <div class="alert-container">
+            <div class="flex justify-center bg-green-400 text-white px-4 py-3 rounded-lg shadow-xl relative max-w-lg mx-auto mt-6">
+                <strong class="font-bold">{{ session()->get('success') }}</strong>
+            </div>
         </div>
+
+        <style>
+            .alert-container {
+                opacity: 1;
+                transition: opacity 0.3s ease-out;
+            }
+
+            .alert-container.fade-out {
+                opacity: 0;
+            }
+        </style>
+
         <script>
             setTimeout(function () {
-                document.querySelector('.bg-green-400').style.display = 'none';
-            }, 3000);
+                let alertContainer = document.querySelector('.alert-container');
+                alertContainer.classList.add('fade-out');
+
+                setTimeout(function () {
+                    alertContainer.style.display = 'none';
+                }, 300);
+            }, 2000);
         </script>
+
     @endif
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">

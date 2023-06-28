@@ -5,22 +5,39 @@
         </h2>
     </x-slot>
     @if (session('error'))
-        <div class="fixed top-44 inset-x-0 flex justify-center">
-            <div class="bg-red-400 text-white px-4 py-3 rounded-lg max-w-lg shadow-xl">
-                <strong class="font-bold">{{ session()->get('error') }}</strong>
+        <div class="alert-container">
+            <div class="fixed top-44 inset-x-0 flex justify-center">
+                <div class="bg-red-400 text-white px-4 py-3 rounded-lg max-w-lg shadow-xl">
+                    <strong class="font-bold">{{ session()->get('error') }}</strong>
+                </div>
             </div>
         </div>
+        <style>
+            .alert-container {
+                opacity: 1;
+                transition: opacity 0.3s ease-out;
+            }
+
+            .alert-container.fade-out {
+                opacity: 0;
+            }
+        </style>
 
         <script>
             setTimeout(function () {
-                document.querySelector('.bg-red-400').style.display = 'none';
-            }, 3000);
+                let alertContainer = document.querySelector('.alert-container');
+                alertContainer.classList.add('fade-out');
+
+                setTimeout(function () {
+                    alertContainer.style.display = 'none';
+                }, 300);
+            }, 2000);
         </script>
     @endif
 
     <div class="container mt-20 mx-auto px-4 sm:px-6 lg:px-8 text-white">
         <div class="mx-auto bg-zinc-900 p-8 sm:p-16 overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="text-7xl font-bold text-white mb-4">{{ $task->title }}</div>
+            <div class="text-7xl font-bold text-white mb-4">{{ $task->title }}</div>
             <div class="badge bg-zinc-800 text-white text-2xl p-4">Points: {{$task->points}}</div>
 
             <div class="mt-8 text-3xl text-white">{{ $task->description }}</div>
@@ -45,7 +62,8 @@
                     <div class="text-xl mb-2 mt-6 font-bold">Enter the flag:</div>
                     <div class="flex items-center">
                         <div class="flex-1 max-w-xl">
-                            <x-text-input id="flag" class="block mt-1 w-full" type="text" name="flag" value="{{ old('flag') }}" autocomplete="off" required/>
+                            <x-text-input id="flag" class="block mt-1 w-full" type="text" name="flag"
+                                          value="{{ old('flag') }}" autocomplete="off" required/>
                             <x-input-error :messages="$errors->get('flag')" class="mt-2"/>
                         </div>
                         <input type="hidden" name="task_id" value="{{ $task->id }}">
