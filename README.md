@@ -18,7 +18,7 @@ Technology used to create this project:
 Currently configured using sqlite database.
 
 To run localy:
-- Clone the repository:
+- Clone the repository
   ```
   git clone https://github.com/Marsietis/capturetheflag.git
   ```
@@ -35,13 +35,34 @@ To run localy:
   npm install
   ```
 - Create a copy of your .env file
-```
-    cp .env.example .env
-```
-- php artisan key:generate
-- cd database
-- touch database.sqlite
-- cd ..
-- php artisan migrate
-- npm run build
-- php artisan serve
+  ```
+  cp .env.example .env
+  ```
+- Generate an app encryption key
+  ```
+  php artisan key:generate
+  ```
+- cd to database folder
+  ```
+  cd database
+  ```
+- Crete a sqlite database
+  ```
+  touch database.sqlite
+  ```
+- cd back
+  ```
+  cd ..
+  ```
+- Migrate the database
+  ```
+  php artisan migrate
+  ```
+- npm
+  ```
+  npm run build or npm run dev or npm run production
+  ```
+- Start project
+  ```
+  php artisan serve
+  ```
