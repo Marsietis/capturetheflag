@@ -20,7 +20,7 @@ Currently configured using sqlite database.
 To run localy:
 - Clone the repository:
   ```
-- git clone https://github.com/Marsietis/capturetheflag.git
+  git clone https://github.com/Marsietis/capturetheflag.git
   ```
 - cd capturetheflag
 - composer install
