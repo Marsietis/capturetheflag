@@ -22,10 +22,22 @@ To run localy:
   ```
   git clone https://github.com/Marsietis/capturetheflag.git
   ```
-- cd capturetheflag
-- composer install
-- npm install
-- cp .env.example .env
+- cd to project dir
+  ```
+  cd capturetheflag
+  ```
+- Install Composer Dependencies
+  ```
+  composer install
+  ```
+- Install NPM Dependencies
+  ```
+  npm install
+  ```
+- Create a copy of your .env file
+```
+    cp .env.example .env
+```
 - php artisan key:generate
 - cd database
 - touch database.sqlite
