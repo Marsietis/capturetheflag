@@ -29,7 +29,39 @@ jobs:
 
       - name: Run composer install if composer.json exists
         if: steps.check_files.outputs.files_exists == 'true'
-        run: composer validate --no-check-publish && composer install --prefer-dist --no-progress
+        run: composer validate --no-check-publish && composer install --prefer-dist --no-progress -optimize-autoloader --no-dev
+
+      - name: Install Node.js and npm
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Install npm dependencies
+        run: npm install
+
+      - name: Copy .env.example to .env
+        run: cp .env.example .env
+
+      - name: Optimizing Configuration Loading
+        run: php artisan config:cache
+
+      - name: Discover and cache the application's events and listeners
+        run: php artisan event:cache
+    
+      - name: Optimizing Route registration
+        run: php artisan route:cache
+
+      - name: Compile all of the application's Blade templates
+        run: php artisan view:cache
+
+      - name: Cache the framework bootstrap files
+        run: php artisan optimize
+
+      - name: Asset Bundling
+        run: npm run build
+
+      - name: Create a symbolic link from public/storage to storage/app/public
+        run: php artisan storage:link
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
