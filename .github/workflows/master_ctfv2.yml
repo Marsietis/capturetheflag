@@ -63,6 +63,15 @@ jobs:
       - name: Create a symbolic link from public/storage to storage/app/public
         run: php artisan storage:link
 
+      - name: Create database.sqlite
+        run: touch database/database.sqlite
+        
+      - name: Generate Laravel application key
+        run: php artisan key:generate
+
+      - name: Run Laravel migrations
+        run: php artisan migrate --force
+        
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
