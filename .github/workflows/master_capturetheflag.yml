@@ -31,6 +31,23 @@ jobs:
         if: steps.check_files.outputs.files_exists == 'true'
         run: composer validate --no-check-publish && composer install --prefer-dist --no-progress
 
+      - name: Install SQLite extension for PHP
+        run: sudo apt-get update && sudo apt-get install -y sqlite3 libsqlite3-dev
+
+      - name: Install Node.js and npm
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+
+      - name: Install Vite and dependencies
+        run: npm install
+
+      - name: Build frontend assets with Vite
+        run: npm run build
+
+      - name: Copy .env.example to .env
+        run: cp .env.example .env
+
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
 
@@ -49,18 +66,18 @@ jobs:
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v2
         with:
           name: php-app
 
-      - name: Unzip artifact for deployment
+      - name: unzip artifact for deployment
         run: unzip release.zip
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
-          app-name: 'capturetheflag'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_17E26F9F83C24324BDCDBB226E57FCB1 }}
-          package: .
+         app-name: 'capturetheflag'
+         slot-name: 'Production'
+         publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_17E26F9F83C24324BDCDBB226E57FCB1 }}
+         package: .
