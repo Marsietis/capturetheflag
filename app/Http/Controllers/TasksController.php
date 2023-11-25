@@ -35,9 +35,9 @@ class TasksController extends Controller
     {
         $task = Task::findOrFail($id);
         $user = auth()->user();
-        $completedTasks = $user->tasks_completed;
-        $completed = str_contains($completedTasks, $id);
-        return view('task', compact('task', 'completed'));
+        $completedTasks = CompletedTask::where('user_id', $user->id)->pluck('task_id');
+        $taskIsCompleted = $completedTasks->contains($id);
+        return view('task', compact('task', 'taskIsCompleted'));
     }
 
     public function check(Request $request): RedirectResponse
