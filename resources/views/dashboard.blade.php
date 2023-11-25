@@ -54,7 +54,7 @@
                             <h2 class="card-title">{{$task->title}}</h2>
                             <div class="badge bg-zinc-800 text-white text-lg p-4">Points: {{$task->points}}</div>
                             <div class="card-actions justify-end">
-                                <a href="{{ route('tasks', ['id' => $task->id]) }}">
+                                <a href="{{ route('tasks.show', ['id' => $task->id]) }}">
                                     <button class="btn btn-outline btn-error">Go to task</button>
                                 </a>
                             </div>

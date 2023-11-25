@@ -56,7 +56,7 @@
                 </div>
             @endif
 
-            @if(!$completed)
+            @if(!$taskIsCompleted)
                 <form method="POST" action="{{ route('tasks.check') }}" class="mt-8">
                     @csrf
                     <div class="text-xl mb-2 mt-6 font-bold">Enter the flag:</div>
