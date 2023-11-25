@@ -12,7 +12,6 @@ class CompletedTask extends Model
     protected $fillable = [
         'user_id',
         'task_id',
-        'points'
     ];
 
     public function user(): BelongsTo
