@@ -66,11 +66,10 @@ and [node with npm](https://nodejs.org/en).
 2. Run the XAMPP installer and open the XAMPP control panel.
 3. Ensure that the Apache and MySQL services are enabled.
 
-## Step 2: Install Composer and Node
+## Step 2: Install Composer
 
 1. Download and run the Composer installer from [https://getcomposer.org/download](https://getcomposer.org/download).
 2. During installation, check the box that says "Add PHP to PATH."
-3. Install [node with npm](https://nodejs.org/en)
 
 ## Step 3: Clone the Existing Laravel Project
 
@@ -98,10 +97,6 @@ and [node with npm](https://nodejs.org/en).
 5. Migrate Database
    ```
    php artisan migrate
-    ```
-6. Install NPM Dependencies
-    ```
-    npm install
     ```
 7. Restart Apache with the Xampp panel
 8. Now visit: http://localhost
