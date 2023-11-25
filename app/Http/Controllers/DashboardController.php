@@ -13,7 +13,6 @@ class DashboardController extends Controller
         $user = auth()->user();
         $completedTasksIds = CompletedTask::where('user_id', $user->id)->pluck('task_id');
         $tasks = Task::whereNotIn('id', $completedTasksIds)->orderBy('points')->get();
-//        $tasks = Task::orderBy('points')->get();
         $completedTasks = Task::whereIn('id', $completedTasksIds)->get();
         $totalTaskCount = Task::count();
         $score = Leaderboard::where('user_id', $user->id)->first()->score;
