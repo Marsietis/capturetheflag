@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CompletedTask;
+use App\Models\Leaderboard;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -9,11 +11,6 @@ use App\Models\Task;
 
 class TasksController extends Controller
 {
-    public function index(): View
-    {
-        return view('welcome');
-    }
-
     public function store(Request $request): RedirectResponse
     {
         $task = new Task;
@@ -28,7 +25,7 @@ class TasksController extends Controller
         }
         $task->flag = $request->input('flag');
         $task->save();
-        return redirect('/dashboard',);
+        return redirect('/dashboard');
     }
 
     public function show($id): View
@@ -47,14 +44,22 @@ class TasksController extends Controller
         $task = Task::findOrFail($taskId);
         $taskPoints = $task->points;
         $user = auth()->user();
-        $completedTasks = $user->tasks_completed;
-        if (str_contains($completedTasks, $taskId)) {
-            return redirect()->back()->with('error', 'You have already completed this task . ');
+        $completedTasks = CompletedTask::where('user_id', $user->id)->pluck('task_id');
+        if ($completedTasks->contains($taskId)) {
+            return redirect()->back()->with('error', 'You have already completed this task!')->withInput();
         }
         if ($task->flag === $inputtedFlag) {
-            $user->score += $taskPoints;
-            $user->tasks_completed = $completedTasks . $taskId . ',';
+
+            $leaderboard = Leaderboard::where('user_id', $user->id)->first();
+            $leaderboard->score += $taskPoints;
+
+            $completedTask = new CompletedTask;
+            $completedTask->user_id = $user->id;
+            $completedTask->task_id = $taskId;
+
             $user->save();
+            $completedTask->save();
+            $leaderboard->save();
             return redirect('dashboard')->with('success', 'Task completed successfully!');
         } else {
             return redirect()->back()->with('error', 'Sorry, that is not the correct flag . Please try again . ')->withInput();
