@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\CompletedTask;
+use App\Models\Leaderboard;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,16 +17,16 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request): View
+    public function edit(): View
     {
         $user = auth()->user();
-        $completedTasksCount = substr_count($user->tasks_completed, ',');
+        $completedTasksCount = CompletedTask::where('user_id', $user->id)->count();
 
         return view('profile.edit', [
             'user' => $user,
             'tasksCount' => count(DB::table('tasks')->get()),
             'completedTasksCount' => $completedTasksCount,
-            'score' => auth()->user()->score,
+            'score' => Leaderboard::where('user_id', $user->id)->first()->score,
         ]);
     }
 
