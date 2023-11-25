@@ -1,8 +1,7 @@
 <svg
-    width="100"
+    width="150"
     height="50"
     viewBox="0 0 186.48048 85.21814"
-    version="1.1"
     id="svg1"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:svg="http://www.w3.org/2000/svg">
