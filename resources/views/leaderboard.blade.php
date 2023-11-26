@@ -24,7 +24,7 @@
 
     <div class="flex justify-center text-white text-5xl md:text-7xl lg:text-7xl mt-3">Top players</div>
     <div class="flex justify-center">
-        <div class="text-3xl md:text-4xl lg:text-5xl text-white mt-8 mb-40">
+        <div class="text-3xl md:text-4xl lg:text-5xl text-white mt-8 mb-96">
             <div class="text-center">
                 @if($users->count() === 0)
                     <div class="text-4xl">No entries yet</div>

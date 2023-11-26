@@ -29,9 +29,4 @@
         </div>
 
     </div>
-    <footer class="footer footer-center p-4 bg-zinc-800 text-base-content">
-        <div>
-            <p>Copyright © 2023 Martynas Matijošius</p>
-        </div>
-    </footer>
 </x-app-layout>
