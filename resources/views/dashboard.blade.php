@@ -109,10 +109,10 @@
                         <div class="card w-full sm:w-full md:w-96 bg-zinc-900 shadow-xl">
                             <div class="card-body">
                                 <div class="inline-flex items-center">
-                                    <div class="text-gray-400 mr-2">{{ $task->category }}</div>
-                                    <div class="badge bg-zinc-800 text-white text-lg p-4">Points: {{$task->points}}</div>
+                                    <div class="text-gray-400 mr-2 text-lg">{{ $task->category }}</div>
+                                    <div class="badge bg-zinc-800 text-white text-lg p-4">{{$task->points}} points</div>
                                 </div>
-                                <h2 class="card-title text-5xl">{{$task->title}}</h2>
+                                <h2 class="card-title text-2xl truncate">{{$task->title}}</h2>
                                     <div class="">{{ $task->solve_count }} solves</div>
                                 <div class="card-actions justify-end">
                                     @if(in_array($task->id, $completedTasks))
