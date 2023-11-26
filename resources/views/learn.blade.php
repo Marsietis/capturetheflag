@@ -9,7 +9,7 @@
             padding: 1rem;
         }
     </style>
-    <div class="text-white m-20">
+    <div class="text-white mt-20 mx-20 mb-40">
         <div class="text-4xl p-4">Here is a list of must-know things to be effective at CTF games</div>
 
         <div class="text-3xl p-4 p-4">Linux Basics</div>
@@ -469,9 +469,4 @@
 
         <p>Have fun exploring and learning more about the Linux command line!</p>
     </div>
-    <footer class="footer footer-center p-4 bg-zinc-800 text-base-content">
-        <div>
-            <p>Copyright © 2023 Martynas Matijošius</p>
-        </div>
-    </footer>
 </x-app-layout>

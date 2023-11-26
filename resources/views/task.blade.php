@@ -36,7 +36,7 @@
     @endif
 
     <div class="container mt-20 mx-auto px-4 sm:px-6 lg:px-8 text-white">
-        <div class="mx-auto bg-zinc-900 p-8 sm:p-16 overflow-hidden shadow-xl sm:rounded-lg">
+        <div class="mx-auto bg-zinc-900 p-8 sm:p-16 overflow-hidden shadow-xl sm:rounded-lg mb-40">
             <div class="text-7xl font-bold text-white mb-4">{{ $task->title }}</div>
             <div class="badge bg-zinc-800 text-white text-2xl p-4">Points: {{$task->points}}</div>
 
