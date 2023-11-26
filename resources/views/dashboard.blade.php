@@ -41,8 +41,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-center mb-6">
             <div class="bg-white dark:bg-zinc-900 overflow-hidden shadow-sm sm:rounded-lg shadow-xl">
                 <div class="p-6 text-gray-900 dark:text-gray-100 text-xl">
-                    Your score: {{ $score }} Tasks completed: {{ $completedTasks->count() }} / {{ $totalTaskCount }}
-                </div>
+                    Your score: {{ $score }} Tasks completed: {{ count($completedTasks) }}
+                    / {{ $totalTaskCount }}                </div>
             </div>
         </div>
 
@@ -54,28 +54,22 @@
                         <div class="card-body">
                             <h2 class="card-title">{{$task->title}}</h2>
                             <div class="text-gray-400">{{ $task->category }}</div>
-                                <div class="badge bg-zinc-800 text-white text-lg p-4">Points: {{$task->points}}</div>
-                            <div class="card-actions justify-end">
-                                <a href="{{ route('tasks.show', ['id' => $task->id]) }}">
-                                    <button class="btn btn-outline btn-error">Go to task</button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-                @foreach($completedTasks as $task)
-                    <div class="card w-full sm:w-full md:w-96 bg-zinc-900 shadow-xl">
-                        <div class="card-body">
-                            <h2 class="card-title">{{$task->title}}</h2>
                             <div class="badge bg-zinc-800 text-white text-lg p-4">Points: {{$task->points}}</div>
                             <div class="card-actions justify-end">
-                                <span class="text-gray-400 ml-2">Completed</span>
+                                @if(in_array($task->id, $completedTasks))
+                                    <span class="text-gray-400 ml-2">Completed</span>
+                                @else
+                                    <a href="{{ route('tasks.show', ['id' => $task->id]) }}">
+                                        <button class="btn btn-outline btn-error">Go to task</button>
+                                    </a>
+                                @endif
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
         </div>
+
 
     </div>
 </x-app-layout>
