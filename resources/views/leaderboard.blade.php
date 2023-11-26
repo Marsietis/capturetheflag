@@ -24,13 +24,16 @@
 
     <div class="flex justify-center text-white text-5xl md:text-7xl lg:text-7xl mt-3">Top players</div>
     <div class="flex justify-center">
-        <div class="text-3xl md:text-4xl lg:text-5xl text-white mt-8 mb-96">
+        <button id="printButton" class="mt-8 btn btn-outline">Print leaderboard 🖨️</button>
+    </div>
+    <div class="flex justify-center">
+        <div class="text-3xl md:text-4xl lg:text-5xl text-white mt-6 mb-96">
             <div class="text-center">
                 @if($users->count() === 0)
                     <div class="text-4xl">No entries yet</div>
                 @else
                     <div class="overflow-x-auto">
-                        <table class="mt-4 text-xl md:text-3xl lg:text-5xl">
+                        <table id="printTable" class="mt-4 text-xl md:text-3xl lg:text-5xl">
                             <tr>
                                 <th class="p-1 lg:p-4 md:p-3">Position</th>
                                 <th class="p-1 lg:p-4 md:p-3">Name</th>
@@ -51,7 +54,6 @@
                         </table>
                     </div>
                 @endif
-
             </div>
         </div>
     </div>
