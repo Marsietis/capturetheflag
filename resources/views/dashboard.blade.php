@@ -2,7 +2,8 @@
 
     @if(session()->has('success'))
         <div class="alert-container">
-            <div class="flex justify-center bg-green-400 text-white px-4 py-3 rounded-lg shadow-xl relative max-w-lg mx-auto mt-6">
+            <div
+                class="flex justify-center bg-green-400 text-white px-4 py-3 rounded-lg shadow-xl relative max-w-lg mx-auto mt-6">
                 <strong class="font-bold">{{ session()->get('success') }}</strong>
             </div>
         </div>
@@ -52,7 +53,8 @@
                     <div class="card w-full sm:w-full md:w-96 bg-zinc-900 shadow-xl">
                         <div class="card-body">
                             <h2 class="card-title">{{$task->title}}</h2>
-                            <div class="badge bg-zinc-800 text-white text-lg p-4">Points: {{$task->points}}</div>
+                            <div class="text-gray-400">{{ $task->category }}</div>
+                                <div class="badge bg-zinc-800 text-white text-lg p-4">Points: {{$task->points}}</div>
                             <div class="card-actions justify-end">
                                 <a href="{{ route('tasks.show', ['id' => $task->id]) }}">
                                     <button class="btn btn-outline btn-error">Go to task</button>
