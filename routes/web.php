@@ -26,6 +26,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('tasks', TasksController::class)->only(['index', 'store']);
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
     Route::get('/leaderboard', LeaderboardController::class)->name('leaderboard');
+    Route::get('/leaderboard/pdf', [LeaderboardController::class, 'exportToPDF'])->name('leaderboard.exportToPDF');
+    Route::get('/leaderboard/export-to-csv', [LeaderboardController::class, 'exportToCSV'])->name('leaderboard.exportToCSV');
     Route::view('/learn', 'learn')->name('learn');
 });
 
