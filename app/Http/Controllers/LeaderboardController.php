@@ -6,6 +6,7 @@ use App\Models\Leaderboard;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Response;
 
 class LeaderboardController extends Controller
 {
@@ -63,7 +64,7 @@ class LeaderboardController extends Controller
             "Expires" => "0",
         );
 
-        $handle = fopen('php://output', 'w');
+        $handle = fopen('leaderboard.csv', 'w');
 
         // Add CSV header
         fputcsv($handle, ['Position', 'Name', 'Score', 'Last task solved']);
@@ -82,10 +83,6 @@ class LeaderboardController extends Controller
 
         fclose($handle);
 
-        return response()->make(
-            '',
-            200,
-            $headers
-        );
+        return Response::download($csvFileName, "leaderboard.csv", $headers);
     }
 }
