@@ -49,7 +49,7 @@
 
         <div class="flex items-center justify-end mt-4">
             <x-primary-button class="ml-4">
-                {{ __('Register') }}
+                Add task
             </x-primary-button>
         </div>
     </form>
