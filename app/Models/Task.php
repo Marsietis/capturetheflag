@@ -18,6 +18,7 @@ class Task extends Model
         'file',
         'link',
         'category',
+        'solve_count',
     ];
 
 }

@@ -48,8 +48,11 @@ class TasksController extends Controller
             $completedTask->user_id = $user->id;
             $completedTask->task_id = $taskId;
 
+            $task->solve_count += 1;
+
             $user->save();
             $completedTask->save();
+            $task->save();
             $leaderboard->save();
             return redirect('dashboard')->with('success', 'Task completed successfully!');
         } else {
