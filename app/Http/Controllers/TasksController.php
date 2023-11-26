@@ -95,6 +95,7 @@ class TasksController extends Controller
             $path = $file->storeAs('public', $file->getClientOriginalName());
             $task->file = $path;
         }
+        $task->category = $request->input('category');
         $task->flag = $request->input('flag');
         $task->save();
     }
