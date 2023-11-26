@@ -12,7 +12,7 @@ class CheckIfAdmin
     {
         $user = auth()->user();
         if (!($user && $user->is_admin)) {
-            abort(403);
+            abort(404);
         }
         return $next($request);
     }

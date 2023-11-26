@@ -8,24 +8,15 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Task;
+use LaravelIdea\Helper\App\Models\_IH_Task_C;
 
 class TasksController extends Controller
 {
     public function store(Request $request): RedirectResponse
     {
         $task = new Task;
-        $task->title = $request->input('title');
-        $task->description = $request->input('description');
-        $task->points = $request->input('points');
-        $task->link = $request->input('link');
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $path = $file->storeAs('public', $file->getClientOriginalName());
-            $task->file = $path;
-        }
-        $task->flag = $request->input('flag');
-        $task->save();
-        return redirect('/dashboard');
+        $this->assignTaskData($request, $task);
+        return redirect('/dashboard')->with('success', 'Task added successfully!');
     }
 
     public function show($id): View
@@ -64,6 +55,48 @@ class TasksController extends Controller
         } else {
             return redirect()->back()->with('error', 'Sorry, that is not the correct flag . Please try again . ')->withInput();
         }
+    }
+
+    public function showAllTasks(): View
+    {
+        $tasks = Task::all();
+        return view('admin.edit-tasks', compact('tasks'));
+    }
+
+    public function edit($id): View
+    {
+        $task = Task::findOrFail($id);
+        return view('admin.edit-task', compact('task'));
+    }
+
+    public function update(Request $request, $id): RedirectResponse
+    {
+        $task = Task::findOrFail($id);
+        $this->assignTaskData($request, $task);
+        return redirect('dashboard')->with('success', 'Task updated successfully!');
+    }
+
+    public function destroy($id): RedirectResponse
+    {
+        $task = Task::findOrFail($id);
+        $task->delete();
+        return redirect('dashboard')->with('success', 'Task deleted successfully!');
+    }
+
+
+    public function assignTaskData(Request $request, array|Task|_IH_Task_C $task): void
+    {
+        $task->title = $request->input('title');
+        $task->description = $request->input('description');
+        $task->points = $request->input('points');
+        $task->link = $request->input('link');
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $path = $file->storeAs('public', $file->getClientOriginalName());
+            $task->file = $path;
+        }
+        $task->flag = $request->input('flag');
+        $task->save();
     }
 
 }
