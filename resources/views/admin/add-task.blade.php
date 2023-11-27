@@ -29,6 +29,7 @@
                 <option>Reverse engineering</option>
                 <option>Steganography</option>
                 <option>Cryptography</option>
+                <option>OSINT</option>
             </select>
             <x-input-error :messages="$errors->get('category')" class="mt-2"/>
         </div>

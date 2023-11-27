@@ -32,6 +32,10 @@
                     value="Cryptography" {{ request()->get('category') == 'Cryptography' ? 'selected' : '' }}>
                     Cryptography
                 </option>
+                <option
+                    value="OSINT" {{ request()->get('category') == 'OSINT' ? 'selected' : '' }}>
+                    OSINT
+                </option>
             </select>
         </div>
 
