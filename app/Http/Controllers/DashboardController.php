@@ -30,4 +30,5 @@ class DashboardController extends Controller
         $score = Leaderboard::where('user_id', $user->id)->value('score');
 
         return view('dashboard', compact('tasks', 'completedTasks', 'totalTaskCount', 'score', 'hideCompleted'));
-    }}
+    }
+}
