@@ -24,12 +24,12 @@
 
     <div class="flex justify-center text-white text-5xl md:text-7xl lg:text-7xl mt-3">Top players</div>
     <div class="flex justify-center mt-8">
-        <button id="printButton" class="m-4 btn btn-outline">Print leaderboard️</button>
+        <button id="printButton" class="m-4 btn btn-outline shadow-xl">Print leaderboard️</button>
         <a href="{{ route('leaderboard.exportToPDF') }}">
-            <button id="printButton" class="m-4 btn btn-outline">Download PDF</button>
+            <button id="printButton" class="m-4 btn btn-outline shadow-xl">Download PDF</button>
         </a>
         <a href="{{ route('leaderboard.exportToCSV') }}">
-            <button id="csvButton" class="m-4 btn btn-outline">Download CSV</button>
+            <button id="csvButton" class="m-4 btn btn-outline shadow-xl">Download CSV</button>
         </a>
     </div>
     <div class="flex justify-center">

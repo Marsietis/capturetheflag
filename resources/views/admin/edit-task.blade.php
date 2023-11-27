@@ -19,6 +19,20 @@
             <x-input-error :messages="$errors->get('description')" class="mt-2"/>
         </div>
 
+        <div>
+            <x-input-label for="category" :value="__('Category')"/>
+            <select class="select w-full border-zinc-900 focus:border-red-500 focus:ring focus:ring-red-500 rounded-md shadow-sm bg-zinc-800 text-white" name="category" required id="category">
+                <option selected>{{ $task->category }}</option>
+                <option>General</option>
+                <option>Web</option>
+                <option>Forensics</option>
+                <option>Reverse engineering</option>
+                <option>Steganography</option>
+                <option>Cryptography</option>
+            </select>
+            <x-input-error :messages="$errors->get('category')" class="mt-2"/>
+        </div>
+
         <!-- Points -->
         <div class="mt-4">
             <x-input-label for="points" :value="__('Points')"/>

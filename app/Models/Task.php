@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
@@ -17,7 +16,9 @@ class Task extends Model
         'points',
         'flag',
         'file',
-        'link'
+        'link',
+        'category',
+        'solve_count',
     ];
 
 }
