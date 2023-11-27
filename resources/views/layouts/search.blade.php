@@ -1,14 +1,14 @@
 <div class="mb-8 flex items-center">
     <form method="GET" action="{{ route('dashboard') }}" class="flex flex-col md:flex-row">
         <div class="flex flex-col mb-2 md:mb-0 md:mr-2">
-            <label for="search" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 mx-2">Search by Task
+            <label for="search" class="block text-sm font-medium text-gray-300 mb-1 mx-2">Search by Task
                 Title:</label>
             <input type="text" id="search" name="search" class="mx-2 p-2 input w-96 bg-zinc-900 text-white focus:border-red-500 focus:ring-red-500 shadow-xl"
                    placeholder="Enter task title..." value="{{ request()->get('search') }}">
         </div>
 
         <div class="flex flex-col mb-2 md:mb-0 md:mr-2">
-            <label for="category" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 mx-2">Filter by
+            <label for="category" class="block text-sm font-medium text-gray-300 mb-1 mx-2">Filter by
                 Category:</label>
             <select id="category" name="category" class="mx-2 p-2 select text-white bg-zinc-900 w-96 focus:border-red-500 focus:ring-red-500 shadow-xl">
                 <option value="" {{ request()->get('category') == '' ? 'selected' : '' }}>All Categories
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="mb-2 md:mb-0 mt-5">
-            <a href="{{ route('dashboard') }}" class="mx-2 mt-2 md:mt-0 btn btn-outline shadow-xl">
+            <a href="{{ route('dashboard') }}" class="mx-2 mt-2 md:mt-0 btn btn-outline shadow-xl text-gray-100 hover:text-zinc-700 hover:bg-gray-100">
                 Clear Filters
             </a>
             <button type="submit" class="mx-2 btn btn-outline btn-error shadow-xl">

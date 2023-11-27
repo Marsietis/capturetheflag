@@ -32,15 +32,15 @@
 
     @endif
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-200 leading-tight">
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
 
     <div class="py-12 min-h-screen">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-center mb-6">
-            <div class="bg-white dark:bg-zinc-900 overflow-hidden sm:rounded-lg shadow-xl">
-                <div class="p-6 text-gray-900 dark:text-gray-100 text-xl">
+            <div class="bg-zinc-900 overflow-hidden sm:rounded-lg shadow-xl">
+                <div class="p-6 text-gray-100 text-xl">
                     Your score: {{ $score }} Tasks completed: {{ count($completedTasks) }}
                     / {{ $totalTaskCount }}                </div>
             </div>
@@ -63,7 +63,7 @@
                         <div class="card-body">
                             <div class="inline-flex items-center">
                                 <div class="text-gray-400 mr-2 text-lg">{{ $task->category }}</div>
-                                <div class="badge bg-zinc-800 text-white text-lg p-4">{{$task->points}} points</div>
+                                <div class="badge border-zinc-800 bg-zinc-800 text-white text-lg p-4">{{$task->points}} points</div>
                             </div>
                             <h2 class="card-title text-2xl truncate">{{$task->title}}</h2>
                             <div class="">{{ $task->solve_count }} solves</div>

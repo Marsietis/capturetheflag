@@ -1,13 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-200 leading-tight">
             {{ __('Leaderboard') }}
         </h2>
     </x-slot>
 
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-center pt-12">
-        <div class="bg-white dark:bg-zinc-900 overflow-hidden shadow-xl rounded-xl">
-            <div class="p-6 text-gray-900 dark:text-gray-100 text-xl text-center">
+        <div class="bg-zinc-900 overflow-hidden shadow-xl rounded-xl">
+            <div class="p-6 text-gray-100 text-xl text-center">
 
                 Your score: {{ $userScore }} @if($userPosition > 0 && $userScore > 0)
                     Your position: {{ $userPosition }} / {{ $users->count() }}
@@ -24,12 +24,12 @@
 
     <div class="flex justify-center text-white text-5xl md:text-7xl lg:text-7xl mt-3">Top players</div>
     <div class="flex justify-center mt-8">
-        <button id="printButton" class="m-4 btn btn-outline shadow-xl">Print leaderboard️</button>
+        <button id="printButton" class="m-4 btn btn-outline shadow-xl text-gray-100 hover:text-zinc-700 hover:bg-gray-100">Print leaderboard️</button>
         <a href="{{ route('leaderboard.exportToPDF') }}">
-            <button id="printButton" class="m-4 btn btn-outline shadow-xl">Download PDF</button>
+            <button id="printButton" class="m-4 btn btn-outline shadow-xl text-gray-100 hover:text-zinc-700 hover:bg-gray-100">Download PDF</button>
         </a>
         <a href="{{ route('leaderboard.exportToCSV') }}">
-            <button id="csvButton" class="m-4 btn btn-outline shadow-xl">Download CSV</button>
+            <button id="csvButton" class="m-4 btn btn-outline shadow-xl text-gray-100 hover:text-zinc-700 hover:bg-gray-100">Download CSV</button>
         </a>
     </div>
     <div class="flex justify-center">

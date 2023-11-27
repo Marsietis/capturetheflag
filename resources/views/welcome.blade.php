@@ -14,7 +14,7 @@
 <body class="antialiased bg-zinc-900">
 <div class="navbar bg-zinc-900">
     <div class="flex-1">
-        <a class="btn btn-ghost normal-case text-xl" href="/">
+        <a class="btn btn-ghost normal-case text-xl hover:bg-zinc-900" href="/">
             <x-application-logo/>
         </a>
     </div>
@@ -25,15 +25,15 @@
                     <div class="relative top-0 right-0 sm:p-6 text-right z-10">
                         @auth
                             <a href="{{ url('/dashboard') }}"
-                               class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline-red-500">Dashboard</a>
+                               class="text-white">Dashboard</a>
                         @else
                             <a href="{{ route('login') }}"
-                               class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline-red-500">Log
+                               class="text-white">Log
                                 in</a>
 
                             @if (Route::has('register'))
                                 <a href="{{ route('register') }}"
-                                   class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline-red-500">Register</a>
+                                   class="ml-4 text-white">Register</a>
                             @endif
                         @endauth
                     </div>
