@@ -57,9 +57,9 @@
             </div>
 
             <div
-                class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-4 sm:px-8 md:px-16 lg:px-24">
+                class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-8 px-4 sm:px-8 md:px-16 xl:px-24">
                 @foreach($tasks as $task)
-                    <div class="card w-full sm:w-full md:w-96 bg-zinc-900 shadow-xl">
+                    <div class="card xl:w-full sm:w-full md:w-full lg:w-full bg-zinc-900 shadow-xl">
                         <div class="card-body">
                             <div class="inline-flex items-center">
                                 <div class="text-gray-400 mr-2 text-lg">{{ $task->category }}</div>
