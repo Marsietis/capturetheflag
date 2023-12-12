@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/leaderboard/pdf', [LeaderboardController::class, 'exportToPDF'])->name('leaderboard.exportToPDF');
     Route::get('/leaderboard/export-to-csv', [LeaderboardController::class, 'exportToCSV'])->name('leaderboard.exportToCSV');
     Route::view('/learn', 'learn')->name('learn');
+    Route::view('/about', 'about')->name('about');
 });
 
 require __DIR__ . '/auth.php';
