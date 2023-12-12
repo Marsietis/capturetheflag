@@ -99,6 +99,9 @@
             <x-responsive-nav-link :href="route('learn')" :active="request()->routeIs('learn')">
                 {{ __('Learn') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('about')" :active="request()->routeIs('about')">
+                {{ __('About') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
